@@ -1,0 +1,27 @@
+REM Open Notepad and create a batch file
+DELAY 1000
+GUI r
+DELAY 500
+STRING notepad
+ENTER
+DELAY 1000
+STRING @echo off
+ENTER
+STRING echo Hello, My Name is Layla Nassar
+ENTER
+STRING pause
+ENTER
+DELAY 500
+CONTROL s
+DELAY 500
+STRING test.bat
+ENTER
+DELAY 1000
+ALT F4
+
+REM Run the batch file
+DELAY 500
+GUI r
+DELAY 500
+STRING cmd /c test.bat
+ENTER

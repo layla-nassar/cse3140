@@ -1,0 +1,23 @@
+REM Open Notepad and write a Python script
+GUI r
+DELAY 500
+STRING notepad
+ENTER
+DELAY 1000
+
+STRING print("Hello, world!")
+ENTER
+
+DELAY 500
+CONTROL s
+DELAY 500
+STRING hello.py
+ENTER
+DELAY 1000
+ALT F4
+
+REM Run the Python script
+GUI r
+DELAY 500
+STRING python hello.py
+ENTER
